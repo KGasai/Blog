@@ -22,6 +22,14 @@ class Posts extends CI_Model
         return $result->result_array();
     }
 
+    public function selectPostsByTg($id_tag)
+    {
+        $this->db->from('posts');
+        $this->db->where('id_tag', $id_tag);
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
     public function selectThePost($id_post)
     {
         $this->db->from('posts');

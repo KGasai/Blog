@@ -14,7 +14,11 @@ class Main extends CI_Controller
 		}
 
 		$this->load->model('posts');
+		$this->load->model('tags');
+
 		$data['posts'] = $this->posts->selectPosts();
+		$data['tags'] = $this->tags->selectTags();
+
 		$this->load->view('view_index', $data);
 		$this->load->view('templates/footer');
 	}
@@ -35,7 +39,7 @@ class Main extends CI_Controller
 			$data['post'] = $this->posts->selectThePost($id_post);
 			$this->load->view('templates/head');
 			$this->load->view('templates/navbar');
-			$this->load->view('pagePost',$data );
+			$this->load->view('pagePost', $data);
 			$this->load->view('templates/footer');
 		}
 	}
@@ -53,6 +57,24 @@ class Main extends CI_Controller
 				$this->session->set_userdata('error_auth', 'Неверный логин или пароль');
 				redirect('Main/login');
 			}
+		}
+	}
+
+	public function getPostbyIdtag()
+	{
+		if (isset($_POST)) {
+			$id_tag = $_POST['id_tag'];
+			$this->load->view('templates/head.php');
+			if ($this->session->userdata('role') == 'admin') {
+				$this->load->view('templates/navbar_admin');
+			} else {
+				$this->load->view('templates/navbar');
+			}
+
+			$this->load->model('posts');
+			$data['posts'] = $this->posts->selectPostsByTg($id_tag);
+			$this->load->view('getPostbyIdtag', $data);
+			$this->load->view('templates/footer');
 		}
 	}
 
