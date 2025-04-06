@@ -7,9 +7,9 @@
             <div class="m-3">
                 <label for="form-control">Поиск постов по тегу:</label>
                 <select name="id_tag" id="form-control" class="form-control">
-                    <?php foreach($tags as $tag):?>
-                        <option value="<?=$tag['id_tag'];?>"><?=$tag['title_tag'];?></option>
-                    <?php endforeach;?>
+                    <?php foreach ($tags as $tag): ?>
+                        <option value="<?= $tag['id_tag']; ?>"><?= $tag['title_tag']; ?></option>
+                    <?php endforeach; ?>
                 </select>
                 <button type="post" class="btn btn-success mt-3">Поиск</button>
             </div>
@@ -19,7 +19,12 @@
             <?php foreach ($posts as $post): ?>
                 <div class="col-4">
                     <a href="Main/pagePost?id_post=<?= $post['id_post']; ?>">
-                        <img src="<?= $post['path_img']; ?>" alt="Изображение" class="img-thumbnail">
+
+                        <?php if ($post['path_img']): ?>
+                            <img src="<?= $post['path_img']; ?>" alt="Изображение" class="img-thumbnail"
+                                style="width: 600px;">
+                        <?php endif;?>
+
                         <p class="text-center"><?= $post['title_post']; ?></p>
                         <?php if ($this->session->userdata('role') == 'admin'): ?>
                             <a href="Admin/editPost?id_post=<?= $post['id_post']; ?>" class="btn btn-warning">Редактировать</a>
