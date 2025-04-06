@@ -30,4 +30,20 @@ class Posts extends CI_Model
         return $result->result_array();
     }
 
+    public function removePost($id_post)
+    {
+        $this->db->from('posts');
+        $this->db->where('id_post', $id_post);
+        $result = $this->db->delete();
+        return $result;
+    }
+
+    public function updatePost($id_post, $data)
+    {
+        $this->db->where('id_post', $id_post);
+        $this->db->set($data);
+        $result = $this->db->update('posts');
+        return $result;
+    }
+
 }

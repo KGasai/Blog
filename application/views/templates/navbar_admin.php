@@ -13,12 +13,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="Admin/createPost">Создать пост</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Adminn/editPost">Редактировать пост</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Adminn/removePost">Удалить пост</a>
-                </li>
             </ul>
 
             <ul class="navbar-nav me-4 ms-auto mb-2 mb-lg-0">
